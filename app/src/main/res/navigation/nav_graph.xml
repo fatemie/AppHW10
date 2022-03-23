@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.apphw10.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_itemDescriptionFragment"
+            app:destination="@id/itemDescriptionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.apphw10.ProfileFragment"
@@ -20,4 +24,13 @@
         android:name="com.example.apphw10.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/itemDescriptionFragment"
+        android:name="com.example.apphw10.itemDescriptionFragment"
+        android:label="fragment_item_description"
+        tools:layout="@layout/fragment_item_description" >
+        <argument
+            android:name="itemId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.apphw10.databinding.FragmentHomeBinding
 
@@ -29,12 +30,19 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setImage("https://s6.uupload.ir/files/whatsapp_image_2022-03-26_at_9.52.27_am_(5)_9nbj.jpeg", binding.imageView1)
-        setImage("https://s6.uupload.ir/files/whatsapp_image_2022-03-26_at_9.52.27_am_yo6w.jpeg", binding.imageView2)
-        setImage("https://s6.uupload.ir/files/whatsapp_image_2022-03-26_at_9.52.27_am_(4)_gh4s.jpeg", binding.imageView3)
-        setImage("https://s6.uupload.ir/files/whatsapp_image_2022-03-26_at_9.52.27_am_(2)_72gx.jpeg", binding.imageView4)
-        setImage("https://s6.uupload.ir/files/whatsapp_image_2022-03-26_at_9.52.27_am_(3)_xgzd.jpeg", binding.imageView5)
-        setImage("https://s6.uupload.ir/files/whatsapp_image_2022-03-26_at_9.52.27_am_(1)_9hng.jpeg", binding.imageView6)
+        setImage(Data.itemList[0].url, binding.imageView1)
+        setImage(Data.itemList[1].url, binding.imageView2)
+        setImage(Data.itemList[2].url, binding.imageView3)
+        setImage(Data.itemList[3].url, binding.imageView4)
+        setImage(Data.itemList[4].url, binding.imageView5)
+        setImage(Data.itemList[5].url, binding.imageView6)
+
+        setItemListener(binding.imageView1, Data.itemList[0].id)
+        setItemListener(binding.imageView2, Data.itemList[1].id)
+        setItemListener(binding.imageView3, Data.itemList[2].id)
+        setItemListener(binding.imageView4, Data.itemList[3].id)
+        setItemListener(binding.imageView5, Data.itemList[4].id)
+        setItemListener(binding.imageView6, Data.itemList[5].id)
     }
 
     private fun setImage(photoUrl: String, imageView: ImageView){
@@ -44,7 +52,14 @@ class HomeFragment : Fragment() {
             .into(imageView)
     }
 
-    private fun setImageListener(){
+    private fun setItemListener(item : ImageView, id : Int){
+        item.setOnClickListener {
+            goToItemDetail(id)
+        }
+    }
 
+    private fun goToItemDetail(id : Int){
+        val action = HomeFragmentDirections.actionHomeFragmentToItemDescriptionFragment(id)
+        findNavController().navigate(action)
     }
 }
