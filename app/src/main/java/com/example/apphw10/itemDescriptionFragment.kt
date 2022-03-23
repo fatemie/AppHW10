@@ -1,11 +1,11 @@
 package com.example.apphw10
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.apphw10.databinding.FragmentItemDescriptionBinding
 import kotlin.properties.Delegates
@@ -20,6 +20,7 @@ class itemDescriptionFragment : Fragment() {
         arguments?.let {
             itemId = it.getInt("itemId")
         }
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -45,6 +46,31 @@ class itemDescriptionFragment : Fragment() {
     private fun setNameAndDescription(){
         binding.name.text = Data.itemList[itemId].name
         binding.description.text = Data.itemList[itemId].detail
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.share_menu, menu)
+        super.onCreateOptionsMenu(menu,inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.share -> {
+                share(Data.itemList[itemId].name)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    fun share(str : String){
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, str)
+            type = "text/plain"
+        }
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
     }
 
 }
