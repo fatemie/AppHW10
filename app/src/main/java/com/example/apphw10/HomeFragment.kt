@@ -1,12 +1,15 @@
 package com.example.apphw10
 
+import android.annotation.SuppressLint
 import android.media.Image
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.apphw10.databinding.FragmentHomeBinding
@@ -30,19 +33,26 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setImage(Data.itemList[0].url, binding.imageView1)
-        setImage(Data.itemList[1].url, binding.imageView2)
-        setImage(Data.itemList[2].url, binding.imageView3)
-        setImage(Data.itemList[3].url, binding.imageView4)
-        setImage(Data.itemList[4].url, binding.imageView5)
-        setImage(Data.itemList[5].url, binding.imageView6)
+        initVews()
+        setBackGround()
+    }
 
-        setItemListener(binding.imageView1, Data.itemList[0].id)
-        setItemListener(binding.imageView2, Data.itemList[1].id)
-        setItemListener(binding.imageView3, Data.itemList[2].id)
-        setItemListener(binding.imageView4, Data.itemList[3].id)
-        setItemListener(binding.imageView5, Data.itemList[4].id)
-        setItemListener(binding.imageView6, Data.itemList[5].id)
+    private fun initVews(){
+        var itemViewList = arrayListOf<ImageView>()
+        itemViewList.add(binding.imageView1)
+        itemViewList.add(binding.imageView2)
+        itemViewList.add(binding.imageView3)
+        itemViewList.add(binding.imageView4)
+        itemViewList.add(binding.imageView5)
+        itemViewList.add(binding.imageView6)
+
+        for( i in 0..5){
+            if(i == getNumberOfItem()){
+                break
+            }
+            setImage(Data.itemList[i].url, itemViewList[i])
+            setItemListener(itemViewList[i], Data.itemList[i].id)
+        }
     }
 
     private fun setImage(photoUrl: String, imageView: ImageView){
@@ -62,4 +72,29 @@ class HomeFragment : Fragment() {
         val action = HomeFragmentDirections.actionHomeFragmentToItemDescriptionFragment(id)
         findNavController().navigate(action)
     }
+
+    private fun getNumberOfItem() : Int{
+        var prefs = requireActivity().getSharedPreferences(resources.getString(R.string.app_name),
+            AppCompatActivity.MODE_PRIVATE
+        )
+        var numberOfItem = prefs.getInt(NUMBEROFITEM,6)
+        return numberOfItem
+    }
+    @SuppressLint("ResourceAsColor")
+    private fun setBackGround(){
+        if(getTheme() == "dark"){
+            binding.root.setBackgroundColor(R.color.purple_200)
+        }
+    }
+
+    private fun getTheme() : String{
+        var prefs = requireActivity().getSharedPreferences(resources.getString(R.string.app_name),
+            AppCompatActivity.MODE_PRIVATE
+        )
+        var theme = prefs.getString(THEME,"light")
+        return theme.toString()
+    }
+
+
+
 }

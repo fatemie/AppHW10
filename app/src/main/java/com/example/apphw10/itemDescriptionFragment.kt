@@ -1,10 +1,12 @@
 package com.example.apphw10
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.apphw10.databinding.FragmentItemDescriptionBinding
@@ -35,6 +37,7 @@ class itemDescriptionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setImage(Data.itemList[itemId].url,binding.image)
         setNameAndDescription()
+        setBackGround()
     }
 
     private fun setImage(photoUrl: String, imageView: ImageView){
@@ -71,6 +74,21 @@ class itemDescriptionFragment : Fragment() {
         }
         val shareIntent = Intent.createChooser(sendIntent, null)
         startActivity(shareIntent)
+    }
+
+    @SuppressLint("ResourceAsColor")
+    private fun setBackGround(){
+        if(getTheme() == "dark"){
+            binding.root.setBackgroundColor(R.color.purple_200)
+        }
+    }
+
+    private fun getTheme() : String{
+        var prefs = requireActivity().getSharedPreferences(resources.getString(R.string.app_name),
+            AppCompatActivity.MODE_PRIVATE
+        )
+        var theme = prefs.getString(THEME,"light")
+        return theme.toString()
     }
 
 }

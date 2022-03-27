@@ -108,9 +108,55 @@
             android:layout_height="wrap_content"
             android:text="ویرایش اطلاعات کاربر"/>
         <Button
-            android:layout_width="wrap_content"
+            android:id="@+id/editInfoButton"
+            android:text="Edit"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/name"
+            android:hint="Name"
+            android:visibility="gone"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/code"
+            android:hint="National Code"
+            android:visibility="gone"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/phoneNumber"
+            android:hint="Phone Number"
+            android:visibility="gone"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/hesab"
+            android:hint="شماره حساب"
+            android:visibility="gone"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/kart"
+            android:hint="شماره کارت"
+            android:visibility="gone"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/shaba"
+            android:hint="شماره شبا"
+            android:visibility="gone"/>
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="save"
+            android:visibility="gone"/>
 
 
     </LinearLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BankFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/hesab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="شماره حساب"/>
+
+        <TextView
+            android:id="@+id/kart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="شماره کارت"/>
+
+        <TextView
+            android:id="@+id/shaba"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="شماره شبا"/>
+    </LinearLayout>
+
+</FrameLayout>
