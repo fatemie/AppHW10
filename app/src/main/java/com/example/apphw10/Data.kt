@@ -2,6 +2,7 @@ package com.example.apphw10
 
 object Data {
     val itemList = arrayListOf<Item>()
+    val pointList = arrayListOf<String>()
     init {
         testData()
     }
@@ -20,5 +21,15 @@ object Data {
         itemList.add(item4)
         itemList.add(item5)
         itemList.add(item6)
+
+        val point1 = "1111"
+        val point2 = "2222"
+        val point3 = "3333"
+        val point4 = "4444"
+
+        pointList.add(point1)
+        pointList.add(point2)
+        pointList.add(point3)
+        pointList.add(point4)
     }
 }

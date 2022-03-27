@@ -53,6 +53,9 @@ class HomeFragment : Fragment() {
             setImage(Data.itemList[i].url, itemViewList[i])
             setItemListener(itemViewList[i], Data.itemList[i].id)
         }
+
+        var num = (0..3).random()
+        binding.textView.text = Data.PointList[num]
     }
 
     private fun setImage(photoUrl: String, imageView: ImageView){
